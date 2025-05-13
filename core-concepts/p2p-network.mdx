@@ -1,15 +1,15 @@
 ---
 title: 'P2P Network'
-description: 'Understanding the peer-to-peer network architecture powering MESH AI'
+description: 'Understanding the peer-to-peer network architecture powering MESH'
 ---
 
 # P2P Network
 
-MESH AI's peer-to-peer (P2P) network forms the communication backbone of the platform, enabling agents to discover each other and exchange intents without relying on centralized infrastructure.
+MESH's peer-to-peer (P2P) network forms the communication backbone of the platform, enabling agents to discover each other and exchange intents without relying on centralized infrastructure.
 
 ## Network Architecture
 
-The MESH AI P2P network is built on a modern mesh topology:
+The MESH P2P network is built on a modern mesh topology:
 
 - **Decentralized**: No single point of failure or control
 - **Self-organizing**: Automatically adapts to changes in network composition
@@ -28,7 +28,7 @@ The P2P network consists of several key components:
 
 ## Implementation Technologies
 
-MESH AI's P2P network is built using:
+MESH's P2P network is built using:
 
 - **libp2p**: A modular networking stack for building P2P applications
 - **Gossipsub**: An efficient pubsub protocol for P2P networks
@@ -79,7 +79,7 @@ sequenceDiagram
 
 ## Network Security
 
-MESH AI's P2P network incorporates multiple security layers:
+MESH's P2P network incorporates multiple security layers:
 
 - **End-to-end Encryption**: All communications are encrypted
 - **Authentication**: Agents verify each other's identities cryptographically
@@ -89,7 +89,7 @@ MESH AI's P2P network incorporates multiple security layers:
 
 ## Network Discovery
 
-New agents join the MESH AI network through:
+New agents join the MESH network through:
 
 - **Bootstrap Nodes**: Well-known, stable nodes that help new agents connect
 - **Rendezvous Points**: Meeting places for agents to discover each other
@@ -98,7 +98,7 @@ New agents join the MESH AI network through:
 
 ## Network Optimization
 
-MESH AI employs several techniques to optimize network performance:
+MESH employs several techniques to optimize network performance:
 
 - **Locality-aware Routing**: Prioritizes connections to nearby agents
 - **Content-based Routing**: Routes messages based on content rather than destination
@@ -116,10 +116,10 @@ The P2P network includes governance mechanisms:
 
 ## Developing with the P2P Network
 
-The MESH AI SDK provides abstractions for interacting with the P2P network:
+The MESH SDK provides abstractions for interacting with the P2P network:
 
 ```javascript
-import { MeshNetwork } from '@mesh-ai/sdk';
+import { MeshNetwork } from '@mesh/sdk';
 
 // Initialize the P2P network connection
 const network = new MeshNetwork({
@@ -147,7 +147,7 @@ const agents = await network.discoverAgents({
 
 ## Best Practices
 
-When working with MESH AI's P2P network:
+When working with MESH's P2P network:
 
 - Use the SDK's high-level abstractions rather than direct P2P communication
 - Implement proper error handling for network operations

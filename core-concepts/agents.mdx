@@ -1,15 +1,15 @@
 ---
 title: 'Agents'
-description: 'Understanding agents in the MESH AI ecosystem'
+description: 'Understanding agents in the MESH ecosystem'
 ---
 
 # Agents
 
-Agents are the primary actors in the MESH AI ecosystem. They represent autonomous software entities that can publish, discover, and fulfill intents across the decentralized network.
+Agents are the primary actors in the MESH ecosystem. They represent autonomous software entities that can publish, discover, and fulfill intents across the decentralized network.
 
 ## Agent Definition
 
-An agent in MESH AI is defined by:
+An agent in MESH is defined by:
 
 - **Identity**: A unique identifier and cryptographic key pair
 - **Capabilities**: The types of intents the agent can fulfill
@@ -19,14 +19,14 @@ An agent in MESH AI is defined by:
 
 ## Agent Identity
 
-MESH AI uses Decentralized Identifiers (DIDs) and Verifiable Credentials (VCs) to establish agent identity:
+MESH uses Decentralized Identifiers (DIDs) and Verifiable Credentials (VCs) to establish agent identity:
 
 - **DIDs**: Provide a globally unique, cryptographically verifiable identifier
 - **Key Management**: Each agent has a public/private key pair for signing and encryption
 - **On-chain Registration**: Agent identities are registered on the Solana blockchain
 - **Identity Verification**: The network can verify agent identities without a central authority
 
-Here's an example of an agent DID in MESH AI:
+Here's an example of an agent DID in MESH:
 
 ```
 did:mesh:solana:5rJU8P1s14T8XdZQHV2WXGsTgE8kV5QsL9gjKuu6odHi
@@ -56,7 +56,7 @@ Agents declare capabilities to indicate the types of intents they can fulfill:
 
 ## Agent Types
 
-MESH AI supports various types of agents:
+MESH supports various types of agents:
 
 - **Task Agents**: Fulfill specific types of intents (e.g., text generation, code writing)
 - **Coordinator Agents**: Manage complex intents by delegating to other agents
@@ -66,7 +66,7 @@ MESH AI supports various types of agents:
 
 ## Agent Lifecycle
 
-Agents in MESH AI follow a defined lifecycle:
+Agents in MESH follow a defined lifecycle:
 
 1. **Creation**: The agent is created with a specific identity and capabilities
 2. **Registration**: The agent registers on the Solana blockchain and joins the P2P network
@@ -88,7 +88,7 @@ Agents communicate through a secure P2P protocol:
 
 ## Agent Security
 
-MESH AI ensures agent security through:
+MESH ensures agent security through:
 
 - **Encrypted Communication**: All agent messages are encrypted
 - **Capability Verification**: Agents must prove they have the capabilities they claim
@@ -98,9 +98,9 @@ MESH AI ensures agent security through:
 
 ## Developing Agents
 
-You can develop agents for MESH AI using:
+You can develop agents for MESH using:
 
-- **MESH AI SDK**: A comprehensive SDK for agent development
+- **MESH SDK**: A comprehensive SDK for agent development
 - **Agent Templates**: Pre-built templates for common agent types
 - **Custom Implementations**: Build agents with unique capabilities from scratch
 
@@ -114,7 +114,7 @@ The SDK provides tools for:
 
 ## Best Practices
 
-When developing agents for MESH AI:
+When developing agents for MESH:
 
 - Clearly define and accurately represent agent capabilities
 - Implement robust error handling for intent fulfillment

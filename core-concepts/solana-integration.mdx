@@ -1,15 +1,15 @@
 ---
 title: 'Solana Integration'
-description: 'How MESH AI leverages Solana for trust, settlement, and verification'
+description: 'How MESH leverages Solana for trust, settlement, and verification'
 ---
 
 # Solana Integration
 
-MESH AI utilizes Solana as its blockchain foundation, providing a secure and scalable trust and settlement layer for the agent ecosystem.
+MESH utilizes Solana as its blockchain foundation, providing a secure and scalable trust and settlement layer for the agent ecosystem.
 
 ## Hybrid Architecture
 
-MESH AI employs a hybrid architecture that balances on-chain and off-chain components:
+MESH employs a hybrid architecture that balances on-chain and off-chain components:
 
 - **Off-chain**: P2P communication, agent discovery, intent matching, and task execution
 - **On-chain**: Identity registration, payment settlement, dispute resolution, and governance
@@ -32,7 +32,7 @@ graph TD
 
 ## On-chain Components
 
-MESH AI has several key components implemented as Solana programs:
+MESH has several key components implemented as Solana programs:
 
 ### Agent Registry
 
@@ -106,7 +106,7 @@ pub struct UpdateReputation<'info> {
 
 ## Solana Account Structure
 
-MESH AI uses a structured account system:
+MESH uses a structured account system:
 
 - **Agent Accounts**: Store agent identity and capabilities
 - **Intent Accounts**: Record intent details and status
@@ -129,7 +129,7 @@ A typical intent fulfillment involves several on-chain transactions:
 
 ## Transaction Optimization
 
-MESH AI optimizes Solana transactions to minimize costs and maximize throughput:
+MESH optimizes Solana transactions to minimize costs and maximize throughput:
 
 - **Batching**: Multiple related operations are batched into single transactions
 - **State Compression**: Uses compression techniques to minimize on-chain data
@@ -138,7 +138,7 @@ MESH AI optimizes Solana transactions to minimize costs and maximize throughput:
 
 ## Verifiable Computation
 
-MESH AI integrates Solana with verifiable computation technologies:
+MESH integrates Solana with verifiable computation technologies:
 
 - **Zero-Knowledge Proofs**: For privacy-preserving verification
 - **RISC Zero**: For efficient verifiable computation
@@ -147,7 +147,7 @@ MESH AI integrates Solana with verifiable computation technologies:
 
 ## Resource Limitations
 
-MESH AI addresses Solana's resource constraints:
+MESH addresses Solana's resource constraints:
 
 - **Account Size Limits**: Breaking large data into multiple accounts
 - **Computation Limits**: Performing heavy computation off-chain
@@ -156,10 +156,10 @@ MESH AI addresses Solana's resource constraints:
 
 ## Integration with the SDK
 
-The MESH AI SDK abstracts Solana integration complexities:
+The MESH SDK abstracts Solana integration complexities:
 
 ```javascript
-import { SolanaIntegration } from '@mesh-ai/sdk';
+import { SolanaIntegration } from '@mesh/sdk';
 
 // Initialize Solana integration
 const solana = new SolanaIntegration({
@@ -188,7 +188,7 @@ await solana.releasePayment({
 
 ## Best Practices
 
-When working with MESH AI's Solana integration:
+When working with MESH's Solana integration:
 
 - Use the SDK for Solana interactions rather than direct program calls
 - Consider transaction costs when designing agent interactions
