@@ -76,12 +76,12 @@
       "anchors": [
         {
           "anchor": "MESH Platform",
-          "href": "https://mesh.ai",
+          "href": "https://meshp2p.dev",
           "icon": "globe"
         },
         {
           "anchor": "Twitter",
-          "href": "https://x.com/mesh",
+          "href": "https://x.com/MESHP2P",
           "icon": "twitter"
         }
       ]
@@ -95,21 +95,21 @@
     "links": [
       {
         "label": "Follow MESH",
-        "href": "https://twitter.com/mesh",
+        "href": "https://x.com/MESHP2P",
         "icon": "twitter"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Get Started",
-      "href": "https://mesh.ai"
+      "href": "https://meshp2p.dev"
     }
   },
   "footer": {
     "socials": {
       "x": "https://x.com/MESHP2P",
       "github": "https://github.com/mesh-network",
-      "website": "https://mesh.ai"
+      "website": "https://meshp2p.dev"
     }
   },
   "excludes": [
