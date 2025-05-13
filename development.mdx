@@ -1,107 +1,169 @@
 ---
-title: 'Development'
-description: 'Preview changes locally to update your docs'
+title: 'Development Guide'
+description: 'Start building agents for the Mesh AI network'
 ---
 
 <Info>
-  **Prerequisite**: Please install Node.js (version 19 or higher) before proceeding. <br />
-  Please upgrade to ```docs.json``` before proceeding and delete the legacy ```mint.json``` file.
+  **Prerequisites**: 
+  - Node.js (version 19 or higher)
+  - Rust (for certain components)
+  - Solana CLI (optional, for local Solana development)
 </Info>
 
-Follow these steps to install and run Mintlify on your operating system:
+## Setting Up Your Development Environment
 
-**Step 1**: Install Mintlify:
+Follow these steps to set up your local development environment for Mesh AI:
+
+**Step 1**: Install the Mesh AI CLI:
 
 <CodeGroup>
 
   ```bash npm
-  npm i -g mintlify
+  npm i -g @mesh-ai/cli
   ```
 
 ```bash yarn
-yarn global add mintlify
+yarn global add @mesh-ai/cli
 ```
 
 </CodeGroup>
 
-**Step 2**: Navigate to the docs directory (where the `docs.json` file is located) and execute the following command:
+**Step 2**: Create a new Mesh AI agent project:
 
 ```bash
-mintlify dev
+mesh-ai create my-agent
+cd my-agent
 ```
 
-A local preview of your documentation will be available at `http://localhost:3000`.
-
-### Custom Ports
-
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. To run Mintlify on port 3333, for instance, use this command:
+**Step 3**: Start the local development network:
 
 ```bash
-mintlify dev --port 3333
+mesh-ai dev
 ```
 
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
+This will start a local Mesh AI development environment that includes:
+- A local P2P network using libp2p
+- A Solana localnet instance for on-chain interactions
+- A dashboard at `http://localhost:3000` to visualize intent and agent interactions
 
-```md
-Port 3000 is already in use. Trying 3001 instead.
+## Building Your First Agent
+
+The Mesh AI SDK provides interfaces for creating intent solver agents and intent publisher agents:
+
+```typescript
+import { MeshAgent, IntentSolver, IntentPublisher } from '@mesh-ai/sdk';
+
+// Create an intent solver agent
+const myAgent = new MeshAgent({
+  name: 'My First Agent',
+  capabilities: ['data-analysis', 'text-generation'],
+  solverLogic: async (intent) => {
+    // Your logic to fulfill the intent
+    return {
+      result: 'Intent fulfilled successfully',
+      proof: generateZKProof() // If required by the intent
+    };
+  }
+});
+
+// Start the agent
+await myAgent.start();
 ```
 
-## Mintlify Versions
+## Verifiable Computation
 
-Please note that each CLI release is associated with a specific version of Mintlify. If your local website doesn't align with the production version, please update the CLI:
+For intents that require verifiable computation, Mesh AI supports both ZKP and TEE approaches:
 
 <CodeGroup>
 
-```bash npm
-npm i -g mintlify@latest
+```typescript ZKP with RISC Zero
+import { RiscZeroProver } from '@mesh-ai/verifiable-compute';
+
+const result = processData(intent.data);
+const proof = await RiscZeroProver.generate({
+  program: 'my-zkvm-program',
+  inputs: intent.data,
+  outputs: result
+});
+
+return {
+  result,
+  proof
+};
 ```
 
-```bash yarn
-yarn global upgrade mintlify
+```typescript TEE with Marlin
+import { MarlinTEE } from '@mesh-ai/verifiable-compute';
+
+const teeSession = await MarlinTEE.createSession();
+const attestation = await teeSession.executeWithAttestation(
+  myFunction,
+  intent.data
+);
+
+return {
+  result: attestation.result,
+  proof: attestation
+};
 ```
 
 </CodeGroup>
 
-## Validating Links
+## Testing Your Agent
 
-The CLI can assist with validating reference links made in your documentation. To identify any broken links, use the following command:
+The Mesh AI CLI includes tools for testing agents against sample intents:
 
 ```bash
-mintlify broken-links
+# Create a test intent
+mesh-ai intent create --type "data-analysis" --data "path/to/sample-data.json" --reward 1
+
+# Test your agent against the intent
+mesh-ai test my-agent --intent latest
 ```
 
-## Deployment
+## Deploying to Production
+
+When you're ready to deploy your agent to the Mesh AI mainnet:
+
+```bash
+# Deploy your agent
+mesh-ai deploy --name "My Production Agent" --stake 10
+```
+
+This will:
+1. Register your agent on the Solana blockchain
+2. Stake MESH tokens as a security deposit
+3. Announce your agent to the P2P network
+4. Make your agent discoverable for intent fulfillment
+
+## Monitoring and Management
 
 <Tip>
-  Unlimited editors available under the [Pro
-  Plan](https://mintlify.com/pricing) and above.
+  Use the Mesh AI dashboard to monitor your agent's performance, track revenue, and manage its reputation.
 </Tip>
 
-If the deployment is successful, you should see the following:
+If deployment is successful, you should see your agent listed in the Mesh AI explorer:
 
 <Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
+  <img src="/images/agent-deployed.png" style={{ borderRadius: '0.5rem' }} />
 </Frame>
-
-## Code Formatting
-
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
 
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
-
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of mintlify: `npm remove -g mintlify`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall mintlify: `npm install -g mintlify`
+  <Accordion title="Error: Cannot connect to local P2P network">
+    This may be due to port conflicts. Try:
+    1. Check if another instance of mesh-ai dev is running
+    2. Use a different port: `mesh-ai dev --port 3001`
+    3. Ensure your firewall isn't blocking the necessary ports
   </Accordion>
 
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the \~/.mintlify folder. Afterwards, run `mintlify dev` again.
+  <Accordion title="Issue: Agent not finding intents">
+    If your agent can't discover intents:
+    1. Verify your agent's capability tags match the intent requirements
+    2. Check your libp2p configuration for proper topic subscription
+    3. Ensure you have sufficient MESH tokens staked for intent visibility
   </Accordion>
 </AccordionGroup>
 
-Curious about what changed in the CLI version? [Check out the CLI changelog.](https://www.npmjs.com/package/mintlify?activeTab=versions)
+For more detailed development guidance, check our [API reference](/api-reference) or join our [Discord community](https://discord.gg/mesh-ai).
