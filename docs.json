@@ -98,5 +98,8 @@
       "github": "https://github.com/mintlify",
       "linkedin": "https://linkedin.com/company/mintlify"
     }
-  }
+  },
+  "excludes": [
+    "Solana Agent Mesh Network Idea.md"
+  ]
 }
